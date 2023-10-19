@@ -20,7 +20,15 @@ public class Main {
         listObjects.add("D://Games2//savegames//game2.dat");
         listObjects.add("D://Games2//savegames//game3.dat");
         zipFiles("D://Games2//savegames//zip.zip", listObjects);
+        delFiles(listObjects);
 
+    }
+
+    private static void delFiles(List<String> listObjects) {
+        for (String object : listObjects) {
+            File gameDat = new File(object);
+            if (gameDat.delete()) System.out.println("Файл " + object + " удален");
+        }
     }
 
     private static void zipFiles(String path, List<String> listObjects) {
@@ -37,8 +45,7 @@ public class Main {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-                File gameDat = new File(object);
-                if (gameDat.delete()) System.out.println("Файл " + object + " удален");
+
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
